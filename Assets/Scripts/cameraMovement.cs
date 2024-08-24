@@ -15,6 +15,8 @@ public class cameraMovement : MonoBehaviour
     private Vector3 velocity = Vector3.zero; // Reference velocity for SmoothDamp
     private float sizeVelocity = 0.0f; // Reference velocity for SmoothDamp on size
 
+    bool singlePlayer; 
+
     void LateUpdate()
     {
         if (player1 == null || player2 == null)
@@ -25,21 +27,31 @@ public class cameraMovement : MonoBehaviour
         // Calculate the midpoint between the two players
         if (!player1.GetComponent<movementScript>().isDead && !player2.GetComponent<movementScript>().isDead)
         {
-            midpoint = (player1.position + player2.position) / 2f + offset; 
+            midpoint = (player1.position + player2.position) / 2f + offset;
+            singlePlayer = false; 
         }else if (player1.GetComponent<movementScript>().isDead)
         {
-            midpoint = player2.position + offset; 
+            midpoint = player2.position + offset;
+            singlePlayer = true; 
         }else if (player2.GetComponent<movementScript>().isDead)
         {
-            midpoint = player1.position + offset; 
+            midpoint = player1.position + offset;
+            singlePlayer = true; 
         }
 
         // Calculate the distance between the two players
         float distance = (player1.position - player2.position).magnitude;
 
         // Adjust the camera size to fit both players on screen
-        float targetSize = Mathf.Clamp(distance / zoomLimiter, minCameraSize, maxCameraSize);
-        Camera.main.orthographicSize = Mathf.SmoothDamp(Camera.main.orthographicSize, targetSize, ref sizeVelocity, sizeSmoothTime);
+        if (!singlePlayer)
+        {
+            float targetSize = Mathf.Clamp(distance / zoomLimiter, minCameraSize, maxCameraSize);
+            Camera.main.orthographicSize = Mathf.SmoothDamp(Camera.main.orthographicSize, targetSize, ref sizeVelocity, sizeSmoothTime);
+        }else
+        {
+            float targetSize = Mathf.Clamp(minCameraSize, minCameraSize, maxCameraSize);
+            Camera.main.orthographicSize = Mathf.SmoothDamp(Camera.main.orthographicSize, targetSize, ref sizeVelocity, sizeSmoothTime);
+        }
 
         // Clamp the y position of the midpoint considering the camera's size
         float cameraHeight = Camera.main.orthographicSize;
