@@ -2,15 +2,21 @@ using UnityEngine;
 
 public class health : MonoBehaviour
 {
+    audioManager am; 
+
     movementScript movement; 
     Animator anim;
-    Rigidbody2D rb; 
+    Rigidbody2D rb;
+
+    public AudioClip deathSound; 
 
     void Start()
     {
         movement = GetComponent<movementScript>(); 
         anim = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>(); 
+        rb = GetComponent<Rigidbody2D>();
+
+        am = FindObjectOfType<audioManager>(); 
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -20,7 +26,8 @@ public class health : MonoBehaviour
             anim.SetBool("dead", true);
             anim.SetBool("grounded", true); 
             movement.isDead = true;
-            rb.velocity = Vector2.zero; 
+            rb.velocity = Vector2.zero;
+            am.PlaySound(deathSound, 0.1f); 
         }
     }
 }

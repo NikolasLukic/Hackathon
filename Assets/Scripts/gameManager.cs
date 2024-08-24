@@ -2,10 +2,27 @@ using UnityEngine;
 
 public class gameManager : MonoBehaviour
 {
-    public GameObject pauseMenu; 
+    public sceneManager sm;
+    public audioManager am; 
+
+    public GameObject pauseMenu;
+    public GameObject gameOverMenu; 
+
+    public movementScript player1, player2;
+
+    bool gameOver;
+
+    public AudioClip gameOverSound; 
 
     void Update()
     {
+        if (player1.isDead && player2.isDead && !gameOver)
+        {
+            gameOverMenu.SetActive(true);
+            am.PlaySound(gameOverSound); 
+            gameOver = true; 
+        }
+
         if (Input.GetButtonDown("Pause"))
         {
             Pause(); 
