@@ -22,8 +22,8 @@ public class parallaxEffect : MonoBehaviour
 
         Sprite sprite = GetComponent<SpriteRenderer>().sprite;
         Texture2D texture = sprite.texture;
-        textureUnitSizeX = (texture.width / sprite.pixelsPerUnit) * transform.localScale.x;
-        textureUnitSizeY = (texture.height / sprite.pixelsPerUnit) * transform.localScale.y;
+        textureUnitSizeX = texture.width / sprite.pixelsPerUnit * transform.localScale.x;
+        textureUnitSizeY = texture.height / sprite.pixelsPerUnit * transform.localScale.y;
     }
 
     void Update()

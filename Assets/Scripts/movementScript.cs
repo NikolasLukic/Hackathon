@@ -16,7 +16,8 @@ public class movementScript : MonoBehaviour
 
     public Animator animator;
 
-    public bool isPlayer1 = true; 
+    public bool isPlayer1 = true;
+    [HideInInspector] public bool isDead; 
 
     void Start()
     {
@@ -24,14 +25,25 @@ public class movementScript : MonoBehaviour
         animator = GetComponent<Animator>(); 
     }
 
+    // Triggers every frame
     void Update()
+    {
+        if (!isDead)
+        {
+            MoveControls(); 
+        }
+    }
+
+    // Player movement and controls
+    void MoveControls()
     {
         // Get input from A/D or left/right arrow keys
         float moveX = 0;
         if (isPlayer1)
         {
             moveX = Input.GetAxis("Horizontal1");
-        }else
+        }
+        else
         {
             moveX = Input.GetAxis("Horizontal2");
         }
@@ -49,7 +61,7 @@ public class movementScript : MonoBehaviour
         }
         else
         {
-            animator.SetBool("moving", false); 
+            animator.SetBool("moving", false);
         }
 
         // Apply movement velocity
@@ -58,7 +70,7 @@ public class movementScript : MonoBehaviour
 
         // Check if the player is grounded
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-        animator.SetBool("grounded", isGrounded); 
+        animator.SetBool("grounded", isGrounded);
 
         // Check for jump input
         if (isGrounded)
