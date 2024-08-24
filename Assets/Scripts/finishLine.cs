@@ -5,6 +5,9 @@ public class finishLine : MonoBehaviour
     public sceneManager sm;
     int playersPassed = 0;
 
+    public movementScript player1;
+    public movementScript player2; 
+
     public string nextLevel; 
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -19,7 +22,10 @@ public class finishLine : MonoBehaviour
 
     void Update()
     {
-        if (playersPassed == 2)
+        if (playersPassed == 2 && !player1.isDead && !player2.isDead)
+        {
+            sm.ChangeScene(nextLevel); 
+        }else if (playersPassed == 1 && (player1.isDead || player2.isDead))
         {
             sm.ChangeScene(nextLevel); 
         }
