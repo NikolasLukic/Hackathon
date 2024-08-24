@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 6474913305019181503}
   m_Layer: 6
   m_Name: PlayerHobo2
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -179,6 +179,7 @@ MonoBehaviour:
   sprite: {fileID: 6100020736812521334}
   isPlayer1: 0
   isDead: 0
+  isFinish: 0
   jumpSound: {fileID: 8300000, guid: 4132ea1c66097463fa3915ddbec80f9b, type: 3}
 --- !u!95 &6100020736812521339
 Animator:

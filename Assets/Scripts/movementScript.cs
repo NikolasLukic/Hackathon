@@ -20,6 +20,7 @@ public class movementScript : MonoBehaviour
 
     public bool isPlayer1 = true;
     [HideInInspector] public bool isDead;
+    [HideInInspector] public bool isFinish;
 
     public AudioClip jumpSound; 
 
@@ -34,7 +35,7 @@ public class movementScript : MonoBehaviour
     // Triggers every frame
     void Update()
     {
-        if (!isDead)
+        if (!isDead && !isFinish)
         {
             MoveControls(); 
         }
