@@ -26,6 +26,7 @@ public class gameManager : MonoBehaviour
         if (Input.GetButtonDown("Pause"))
         {
             Pause(); 
+            // print 
         }
     }
 
