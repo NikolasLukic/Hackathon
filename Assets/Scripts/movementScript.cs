@@ -3,6 +3,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class movementScript : MonoBehaviour
 {
+    audioManager am; 
+
     public float moveSpeed = 5f;
     public float jumpForce = 10f;
     public LayerMask groundLayer;
@@ -14,15 +16,19 @@ public class movementScript : MonoBehaviour
 
     public SpriteRenderer sprite;
 
-    public Animator animator;
+    Animator animator;
 
     public bool isPlayer1 = true;
-    [HideInInspector] public bool isDead; 
+    [HideInInspector] public bool isDead;
+
+    public AudioClip jumpSound; 
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>(); 
+        animator = GetComponent<Animator>();
+
+        am = FindObjectOfType<audioManager>(); 
     }
 
     // Triggers every frame
@@ -78,6 +84,7 @@ public class movementScript : MonoBehaviour
             if (Input.GetButtonDown("Jump1") && isPlayer1 || Input.GetButtonDown("Jump2") && !isPlayer1)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                am.PlaySound(jumpSound); 
             }
         }
     }
