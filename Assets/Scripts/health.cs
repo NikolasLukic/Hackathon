@@ -23,11 +23,24 @@ public class health : MonoBehaviour
     {
         if (col.CompareTag("Enemy"))
         {
-            anim.SetBool("dead", true);
-            anim.SetBool("grounded", true); 
-            movement.isDead = true;
-            rb.velocity = Vector2.zero;
-            am.PlaySound(deathSound, 0.1f); 
+            Kill(); 
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.collider.CompareTag("Enemy"))
+        {
+            Kill(); 
+        }
+    }
+
+    void Kill()
+    {
+        anim.SetBool("dead", true);
+        anim.SetBool("grounded", true);
+        movement.isDead = true;
+        rb.velocity = Vector2.zero;
+        am.PlaySound(deathSound, 0.1f);
     }
 }
