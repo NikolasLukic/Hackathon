@@ -20,8 +20,19 @@ public class cameraMovement : MonoBehaviour
         if (player1 == null || player2 == null)
             return;
 
+        Vector3 midpoint = Vector3.zero;
+
         // Calculate the midpoint between the two players
-        Vector3 midpoint = (player1.position + player2.position) / 2f + offset;
+        if (!player1.GetComponent<movementScript>().isDead && !player2.GetComponent<movementScript>().isDead)
+        {
+            midpoint = (player1.position + player2.position) / 2f + offset; 
+        }else if (player1.GetComponent<movementScript>().isDead)
+        {
+            midpoint = player2.position + offset; 
+        }else if (player2.GetComponent<movementScript>().isDead)
+        {
+            midpoint = player1.position + offset; 
+        }
 
         // Calculate the distance between the two players
         float distance = (player1.position - player2.position).magnitude;
