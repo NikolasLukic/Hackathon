@@ -14,7 +14,9 @@ public class movementScript : MonoBehaviour
 
     public SpriteRenderer sprite;
 
-    public Animator animator; 
+    public Animator animator;
+
+    public bool isPlayer1 = true; 
 
     void Start()
     {
@@ -25,7 +27,14 @@ public class movementScript : MonoBehaviour
     void Update()
     {
         // Get input from A/D or left/right arrow keys
-        float moveX = Input.GetAxis("Horizontal");
+        float moveX = 0;
+        if (isPlayer1)
+        {
+            moveX = Input.GetAxis("Horizontal1");
+        }else
+        {
+            moveX = Input.GetAxis("Horizontal2");
+        }
 
         // Flip player based on movement direction
         if (moveX > 0)
@@ -52,9 +61,12 @@ public class movementScript : MonoBehaviour
         animator.SetBool("grounded", isGrounded); 
 
         // Check for jump input
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (isGrounded)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            if (Input.GetButtonDown("Jump1") && isPlayer1 || Input.GetButtonDown("Jump2") && !isPlayer1)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            }
         }
     }
 
