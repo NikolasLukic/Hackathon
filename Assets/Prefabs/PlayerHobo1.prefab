@@ -177,8 +177,9 @@ MonoBehaviour:
     m_Bits: 8
   groundCheck: {fileID: 6100020736464734180}
   sprite: {fileID: 6100020736812521334}
-  animator: {fileID: 0}
   isPlayer1: 1
+  isDead: 0
+  jumpSound: {fileID: 8300000, guid: 4132ea1c66097463fa3915ddbec80f9b, type: 3}
 --- !u!95 &6100020736812521339
 Animator:
   serializedVersion: 5
