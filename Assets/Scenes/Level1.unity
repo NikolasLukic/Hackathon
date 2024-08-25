@@ -2722,10 +2722,6 @@ PrefabInstance:
       propertyPath: player2
       value: 
       objectReference: {fileID: 1986837722}
-    - target: {fileID: 8593512040972387523, guid: dc8402736b26a4fbd9e34caa88bbc97a, type: 3}
-      propertyPath: nextLevel
-      value: Level2
-      objectReference: {fileID: 0}
     - target: {fileID: 8593512040972387527, guid: dc8402736b26a4fbd9e34caa88bbc97a, type: 3}
       propertyPath: m_Name
       value: FinishLine
