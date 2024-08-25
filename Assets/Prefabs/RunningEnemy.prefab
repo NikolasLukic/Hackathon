@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7769988141050594104}
   - component: {fileID: 7769988141050594105}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RunningEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63,7 +63,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7769988141438504704}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: rightLimit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 7769988141568173957}
   - component: {fileID: 7769988141568173960}
   - component: {fileID: 7769988141568173961}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -239,7 +239,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7769988142852989278}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: leftLimit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
